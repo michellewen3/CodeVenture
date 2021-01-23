@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block head %}
+{% endblock %}
+
+{% block inventory %}
+{% endblock %}
+
+{% block gamemap %}
+    <img src="/static/img/area3.jpg" alt="Area 3" />
+{% endblock %}
+{% block moves %}
+<div class="container-fluid">
+    <a
+    class="btn btn-lg"
+    id="page2"
+    href="{{ url_for('page_2') }}"
+    role="button">Down</a>
+</div>
+{% endblock %}
+
+
+{% block codingchallenge %}
+
+    {% if not session['purple_key'] %}
+        <h1>Answer question</h1>
+        <button class="btn" type="button" onclick="wrong_answer()">Answer 1</button>
+        <button class="btn" type="button" onclick="wrong_answer()">Answer 2</button>
+
+        <a
+            class="btn btn-lg"
+            
+            href="{{ url_for('update', item='purple_key') }}"
+            role="button">Answer 3</a>
+
+        <p id="comment"></p>
+    {% else %}
+        <!-- display open chest -->
+        {% if feedback != 'None' %}
+            <p id="comment">The purple key has been retrieved</p>
+            <script>add_item('purple_key')</script>
+        {% else %}
+            <p>Challenge Passed: item already retreived</p>
+        {% endif %}
+    {% endif %}
+
+    <!-- debug -->
+    {{ session['purple_key'] }}
+
+
+{% endblock %}
+
+{% block body2 %}
+<script>
+    create_inventory();
+</script>
+{% endblock %}

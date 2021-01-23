@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/base.css" />
+    <script type="text/javascript" src="/static/app.js"></script>
+    <!-- <link rel="icon" href="/static/fithub_icon.png" /> -->
+    <script src="https://kit.fontawesome.com/ab00bfc686.js" crossorigin="anonymous"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+    {% block body1 %}{% endblock %}
+
+    <div id="mySidenav" class="sidenav">
+        <ul id="inventory_list_2">
+
+        </ul>
+    </div>
+    
+    <div class="main">
+
+        {% block body %}{% endblock %}
+
+        <div class="container" id="inventory">
+            inventory items here
+            <p id=items_list></p>
+            {% block inventory %}{% endblock %}
+        </div>
+        <div class="container" id="map">
+            {% block gamemap %}{% endblock %}
+        </div>
+        <div class="container" id="directions">
+            {% block moves %}{% endblock %}
+        </div>
+        <div class="container" id="codingchallenge">
+            {% block codingchallenge %}{% endblock %}
+        </div>
+    
+        <div class="footer">
+            <p>Copyright @ 2021. All Rights Reserved.</p>
+        </div>
+
+    </div>
+
+    {% block body2 %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+
+
+{% block gamemap %}
+    <img src="/static/img/area5.jpg" alt="Area 5" />
+{% endblock %}
+{% block moves %}
+
+<div class="container-fluid">
+    <a
+    class="btn btn-lg"
+    id="page4"
+    href="{{ url_for('page_4', feedback='None', prevpage='5') }}"
+    role="button">Left</a>
+    <a
+    class="btn btn-lg"
+    id="page9"
+    href="{{ url_for('page_9', prevpage='5') }}"
+    role="button">Down</a>
+</div>
+
+{% endblock %}
+
+{% block codingchallenge %}
+
+    {% if not session['spell_book'] %}
+        <h1>Answer question</h1>
+        <button class="btn" type="button" onclick="wrong_answer()">Answer 1</button>
+        <button class="btn" type="button" onclick="wrong_answer()">Answer 2</button>
+
+        <a
+            class="btn btn-lg"
+            
+            href="{{ url_for('update', item='spell_book') }}"
+            role="button">Answer 3</a>
+
+        <p id="comment"></p>
+    {% else %}
+        <!-- display open chest -->
+        {% if feedback != 'None' %}
+            <p id="comment">The spell book has been retrieved</p>
+            <script>add_item('spell_book')</script>
+        {% else %}
+            <p>Challenge Passed: item already retreived</p>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
+
+{% block body2 %}
+<script>
+    create_inventory();
+</script>
+{% endblock %}

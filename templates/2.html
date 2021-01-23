@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+
+{% block gamemap %}
+    <img src="/static/img/area2.jpg" alt="Area 2" />
+{% endblock %}
+{% block moves %}
+    <a
+    class="btn btn-lg"
+    id="page3"
+    href="{{ url_for('page_3', feedback='None') }}"
+    role="button">Top</a>
+    <a
+    class="btn btn-lg"
+    id="page4"
+    href="{{ url_for('page_4', feedback='None', prevpage='2') }}"
+    role="button">Right</a>
+    <a
+    class="btn btn-lg"
+    id="page1"
+    href="{{ url_for('page_1') }}"
+    role="button">Down</a>
+{% endblock %}
+
+{% block body2 %}
+<script>
+    create_inventory();
+</script>
+{% endblock %}

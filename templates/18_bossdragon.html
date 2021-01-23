@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+
+{% block gamemap %}
+    <img src="/static/img/area18.jpg" alt="Area 18" />
+{% endblock %}
+{% block moves %}
+
+<div class="container-fluid">
+    <a
+    class="btn btn-lg"
+    id="page16"
+    href="{{ url_for('page_16') }}"
+    role="button">Top</a>
+</div>
+
+{% endblock %}
+
+{% block codingchallenge %}
+
+    {% if not session['infinity_stone'] %}
+        <h1>Answer question</h1>
+        <button class="btn" type="button" onclick="wrong_answer()">Answer 1</button>
+        <button class="btn" type="button" onclick="wrong_answer()">Answer 2</button>
+
+        <a
+            class="btn btn-lg"
+            
+            href="#"
+            role="button">Answer 3</a>
+
+        <p id="comment"></p>
+    {% else %}
+        {% if feedback != 'None' %}
+            <p id="comment">The purple key has been retrieved</p>
+        {% else %}
+            <p>Challenge Passed: item already retreived</p>
+        {% endif %}
+    {% endif %}
+
+    
+{% endblock %}
+
+{% block body2 %}
+<script>
+    create_inventory();
+</script>
+{% endblock %}

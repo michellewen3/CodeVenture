@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+
+{% block gamemap %}
+    <img src="/static/img/area15.jpg" alt="Area 15" />
+{% endblock %}
+{% block moves %}
+
+<div class="container-fluid">
+    <a
+    class="btn btn-lg"
+    id="page14"
+    href="{{ url_for('page_14', prevpage='15') }}"
+    role="button">Top</a>
+</div>
+
+{% endblock %}
+
+{% block codingchallenge %}
+
+    {% if not session['infinity_stone'] %}
+        <h1>Answer question</h1>
+        <button class="btn" type="button" onclick="wrong_answer()">Answer 1</button>
+        <button class="btn" type="button" onclick="wrong_answer()">Answer 2</button>
+
+        <a
+            class="btn btn-lg"
+            
+            href="{{ url_for('update', item='infinity_stone') }}"
+            role="button">Answer 3</a>
+
+        <p id="comment"></p>
+    {% else %}
+        <!-- display open chest -->
+        {% if feedback != 'None' %}
+            <p id="comment">The infinity_stone has been retrieved</p>
+            <script>add_item('infinity_stone')</script>
+        {% else %}
+            <p>Challenge Passed: item already retreived</p>
+        {% endif %}
+    {% endif %}
+
+    
+{% endblock %}
+
+{% block body2 %}
+<script>
+    create_inventory();
+</script>
+{% endblock %}

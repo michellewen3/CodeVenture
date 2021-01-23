@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+
+{% block gamemap %}
+    <img src="/static/img/area12.jpg" alt="Area 12" />
+{% endblock %}
+{% block moves %}
+
+<h1>a wise man once said</h1>
+<div class="container-fluid">
+    <a
+    class="btn btn-lg"
+    id="page11"
+    href="{{ url_for('page_11') }}"
+    role="button">Top</a>
+</div>
+
+
+{% endblock %}
+
+{% block body2 %}
+<script>
+    create_inventory();
+</script>
+{% endblock %}

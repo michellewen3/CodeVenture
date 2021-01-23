@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+
+{% block gamemap %}
+    <img src="/static/img/area8.jpg" alt="Area 8" />
+{% endblock %}
+{% block moves %}
+
+<div class="container-fluid">
+    <a
+    class="btn btn-lg"
+    id="page7"
+    href="{{ url_for('page_7') }}"
+    role="button">Top</a>
+</div>
+
+{% endblock %}
+
+{% block codingchallenge %}
+
+    {% if not session['potion_guard'] %}
+        <h1>Answer question</h1>
+        <button class="btn" type="button" onclick="wrong_answer()">Answer 1</button>
+        <button class="btn" type="button" onclick="wrong_answer()">Answer 2</button>
+
+        <a
+            class="btn btn-lg"
+            
+            href="{{ url_for('update', item='potion_guard') }}"
+            role="button">Answer 3</a>
+
+        <p id="comment"></p>
+    {% else %}
+        {% if session['potion'] %}
+            <p>Challenge Passed: item already retreived</p>
+        {% else %}
+            {% if not session['purple_key'] %}
+                <p id="comment">Chest cannot be unlocked without the purple key</p>
+            {% else %}
+                <p id="comment">The potion has been retrieved</p>
+                <script>add_item('potion')</script>
+                {% do session.update({'potion':True}) %}
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+    {{ session['potion'] }}
+
+{% endblock %}
+
+{% block body2 %}
+<script>
+    create_inventory();
+</script>
+{% endblock %}

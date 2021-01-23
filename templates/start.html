@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block head %}
+{% endblock %}
+{% block body1 %}
+<script>
+    initialize_inventory();
+</script>
+{% endblock %}
+
+{% block inventory %}
+{% endblock %}
+
+{% block gamemap %}
+    <img src="/static/img/start.jpg" alt="Area Start" />
+{% endblock %}
+{% block moves %}
+
+<div class="container-fluid">
+    <a
+    class="btn btn-lg"
+    id="page1"
+    href="{{ url_for('page_1') }}"
+    role="button">Start Game</a>
+</div>
+
+
+{% endblock %}
+
+{% block body2 %}
+<script>
+    create_inventory();
+</script>
+{% endblock %}

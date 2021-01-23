@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+
+
+{% block gamemap %}
+    <img src="/static/img/area4.jpg" alt="Area 4" />
+{% endblock %}
+{% block moves %}
+
+<div class="container-fluid">
+
+    {% if session['page4_medium'] %}
+        <a
+        class="btn btn-lg"
+        id="page2"
+        href="{{ url_for('page_2') }}"
+        role="button">Left</a>
+        <a
+        class="btn btn-lg"
+        id="page5"
+        href="{{ url_for('page_5', feedback='None') }}"
+        role="button">Right</a>
+    {% else %}
+        {% if prevpage == '2' %}
+            <a
+            class="btn btn-lg"
+            id="page2"
+            href="{{ url_for('page_2') }}"
+            role="button">Left</a>
+        {% elif prevpage == '5' %}
+            <a
+            class="btn btn-lg"
+            id="page5"
+            href="{{ url_for('page_5', feedback='None') }}"
+            role="button">Right</a>
+        {% endif %}
+    {% endif %}
+
+</div>
+
+{% endblock %}
+
+{% block codingchallenge %}
+
+    {% if not session['page4_medium'] %}
+        <h1>Answer question</h1>
+        <button class="btn" type="button" onclick="wrong_answer()">Answer 1</button>
+        <button class="btn" type="button" onclick="wrong_answer()">Answer 2</button>
+
+        <a
+            class="btn btn-lg"
+            
+            href="{{ url_for('update', item='page4_medium') }}"
+            role="button">Answer 3</a>
+
+        <p id="comment"></p>
+    {% else %}
+            <p id="comment">challenge passed</p>
+    {% endif %}
+
+{% endblock %}
+
+{% block body2 %}
+<script>
+    create_inventory();
+</script>
+{% endblock %}

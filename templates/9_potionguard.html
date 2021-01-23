@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+
+{% block gamemap %}
+    <img src="/static/img/area9.jpg" alt="Area 9" />
+{% endblock %}
+{% block moves %}
+
+<div class="container-fluid">
+
+    {% if not session['potion'] %}
+        {% if prevpage == '7' %}
+            <a
+            class="btn btn-lg"
+            id="page7"
+            href="{{ url_for('page_7') }}"
+            role="button">TopLeft</a>
+        {% endif %}
+        {% if prevpage == '5' %}
+            <a
+            class="btn btn-lg"
+            id="page5"
+            href="{{ url_for('page_5', feedback='None') }}"
+            role="button">TopRight</a>
+        {% endif %}
+    {% else %}
+        <a
+        class="btn btn-lg"
+        id="page7"
+        href="{{ url_for('page_7') }}"
+        role="button">TopLeft</a>
+        <a
+        class="btn btn-lg"
+        id="page5"
+        href="{{ url_for('page_5', feedback='None') }}"
+        role="button">TopRight</a>
+        <a
+        class="btn btn-lg"
+        id="page16"
+        href="{{ url_for('page_16') }}"
+        role="button">Down</a>
+    {% endif %}
+</div>
+
+
+{% endblock %}
+
+{% block body2 %}
+<script>
+    create_inventory();
+</script>
+{% endblock %}
