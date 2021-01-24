@@ -1,65 +1,91 @@
-{% extends 'base.html' %}
+{% extends 'game_base.html' %}
 {% block head %}
 
 {% endblock %}
 
 
 {% block gamemap %}
-    <img src="/static/img/area6.jpg" alt="Area 6" />
-{% endblock %}
-{% block moves %}
-
-<div class="container-fluid">
-    {% if session['page6_easy'] %}
+    <div class="container map_image_parent">
+        <img class="map_image" src="/static/img/area6.jpg" alt="Area 6" />
+        {% if session['page6_easy'] %}
         <a
-        class="btn btn-lg"
-        id="page1"
-        href="{{ url_for('page_1') }}"
-        role="button">Left</a>
+            class="img-responsive itemhover"
+            id="left_arrow"
+            href="{{ url_for('page_1') }}">
+            <img src="/static/img/leftarrow.png" alt="Left Arrow">
+        </a>
         <a
-        class="btn btn-lg"
-        id="page7"
-        href="{{ url_for('page_7') }}"
-        role="button">Right</a>
+            class="img-responsive itemhover"
+            id="right_arrow"
+            href="{{ url_for('page_7') }}">
+            <img src="/static/img/rightarrow.png" alt="Right Arrow">
+        </a>
 
-    {% else %}
-        {% if prevpage == '1' %}
+        {% else %}
+            {% if prevpage == '1' %}
             <a
-            class="btn btn-lg"
-            id="page1"
-            href="{{ url_for('page_1') }}"
-            role="button">Left</a>
-        {% elif prevpage == '7' %}
+                class="img-responsive itemhover"
+                id="left_arrow"
+                href="{{ url_for('page_1') }}">
+                <img src="/static/img/leftarrow.png" alt="Left Arrow">
+            </a>
+            {% elif prevpage == '7' %}
             <a
-            class="btn btn-lg"
-            id="page7"
-            href="{{ url_for('page_7') }}"
-            role="button">Right</a>
+                class="img-responsive itemhover"
+                id="right_arrow"
+                href="{{ url_for('page_7') }}">
+                <img src="/static/img/rightarrow.png" alt="Right Arrow">
+            </a>
+            {% endif %}
+        
         {% endif %}
-    
-    {% endif %}
-</div>
-
+        {% if not session['page6_easy'] %}
+            <img id="yellowbyte_image" class="img-responsive itemhover" src="/static/img/yellowbyte.png" alt="Yellow Byte Easy">
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block codingchallenge %}
+<div class="container" id="codingchallenge">
 
     {% if not session['page6_easy'] %}
-        <h1>Answer question</h1>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 1</button>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 2</button>
-
-        <a
-            class="btn btn-lg"
-            
-            href="{{ url_for('update', item='page6_easy') }}"
-            role="button">Answer 3</a>
-
-        <p id="comment"></p>
+        <h6 class="question">Uh oh! A byte is blocking your way. Do the following task to pass them: Turn comma separated numbers into a list and tuple.</h6>
+        <pre class="q-pre"><code>
+            values = input("Input some comma separated numbers : ")
+        </code></pre>
+        <p id="comment-wrong"> </p>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    list = list(values)
+                    tuple = tuple(list)
+                </code></pre>
+                <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    list = values.join(",")
+                    tuple = tuple(list)
+                </code></pre>
+            <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    list = values.split(",")
+                    tuple = tuple(list)
+                </code></pre>
+                <a href="{{ url_for('update', item='page6_easy') }}" class="card-link stretched-link"></a>
+            </div>
+        </div>    
     {% else %}
-            <p id="comment">challenge passed</p>
+            <p id="comment">Challenge Passed</p>
     {% endif %}
-
+    
+</div>
 {% endblock %}
 
 

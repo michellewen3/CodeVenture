@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block head %}
+{% endblock %}
+{% block body %}
+
+    {% block body1 %}{% endblock %}
+
+
+        <!-- <div class="row h-50">
+            <div class="col-lg-3 inventory-container">
+                <h2 id="inventory-label">Inventory</h2>
+                <img id="inventory-slots" src="/static/img/inventory.png" alt="Inventory">
+                <img id="purple_key_inventory" class="img-responsive itemhover" src="/static/img/purplekey.png" alt="Purple Key">
+                <img id="spell_book_inventory" class="img-responsive itemhover" src="/static/img/spellbook.png" alt="SpellBook Key">
+                <img id="potion_inventory" class="img-responsive itemhover" src="/static/img/potion.png" alt="Potion Key">
+                <img id="red_key_inventory" class="img-responsive itemhover" src="/static/img/redkey.png" alt="Red Key">
+                <img id="infinity_stone_inventory" class="img-responsive itemhover" src="/static/img/infinitystone.png" alt="Infinity Stone">
+            </div>
+            <div class="col-lg-9 map-container">
+                
+            </div>
+        </div> -->
+    {% block gamemap %}{% endblock %}
+
+    <div class="container inventory-container">
+        <img id="inventory-slots" src="/static/img/inventory-hor.jpg" alt="Inventory">
+        <img id="purple_key_inventory" class="img-responsive itemhover" src="/static/img/purplekey.png" alt="Purple Key">
+        <img id="spell_book_inventory" class="img-responsive itemhover" src="/static/img/spellbook.png" alt="SpellBook Key">
+        <img id="potion_inventory" class="img-responsive itemhover" src="/static/img/potion.png" alt="Potion Key">
+        <img id="red_key_inventory" class="img-responsive itemhover" src="/static/img/redkey.png" alt="Red Key">
+        <img id="infinity_stone_inventory" class="img-responsive itemhover" src="/static/img/infinitystone.png" alt="Infinity Stone">
+    </div>
+    
+    {% block codingchallenge %}{% endblock %}
+
+    {% block body2 %}{% endblock %}
+
+
+{% endblock %}

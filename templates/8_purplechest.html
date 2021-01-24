@@ -1,53 +1,83 @@
-{% extends 'base.html' %}
+{% extends 'game_base.html' %}
 {% block head %}
 
 {% endblock %}
 
 {% block gamemap %}
-    <img src="/static/img/area8.jpg" alt="Area 8" />
-{% endblock %}
-{% block moves %}
+    <div class="container map_image_parent">
+        <img class="map_image" src="/static/img/area8.jpg" alt="Area 8" />
+        <a
+            class="img-responsive itemhover"
+            id="up_arrow_8"
+            href="{{ url_for('page_7') }}">
+            <img src="/static/img/uparrow.png" alt="Up Arrow">
+        </a>
 
-<div class="container-fluid">
-    <a
-    class="btn btn-lg"
-    id="page7"
-    href="{{ url_for('page_7') }}"
-    role="button">Top</a>
-</div>
-
+        {% if not session['potion_guard'] %}
+            <img id="guard_image" class="img-responsive itemhover" src="/static/img/guard.png" alt="Chest Guard">
+            <img id="closedchest_image" class="img-responsive itemhover" src="/static/img/closedchest.png" alt="Locked Chest">
+        {% else %}
+            {% if not session['potion'] %}
+                <img id="closedchest_image" class="img-responsive itemhover" src="/static/img/closedchest.png" alt="Locked Chest">
+            {% else %}
+                <img id="openchest_image" class="img-responsive itemhover" src="/static/img/openchest.png" alt="Unlocked Chest">
+            {% endif %}
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block codingchallenge %}
-
+<div class="container" id="codingchallenge">
     {% if not session['potion_guard'] %}
-        <h1>Answer question</h1>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 1</button>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 2</button>
-
-        <a
-            class="btn btn-lg"
-            
-            href="{{ url_for('update', item='potion_guard') }}"
-            role="button">Answer 3</a>
-
-        <p id="comment"></p>
+        <h6 class="question">A guard seems to be protecting a treasure chest. Defeat the guard by completing the task: Remove duplicates from the list.</h6>
+        <pre class="q-pre"><code>
+            test_list = [1, 3, 5, 6, 3, 5, 6, 1]
+        </code></pre>
+        <p id="comment-wrong"> </p>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    res = list(set(test_list))
+                </code></pre>
+                <a href="{{ url_for('update', item='potion_guard') }}" class="card-link stretched-link"></a>
+            </div>
+        </div>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    res = []
+                    for i in test_list:
+                        if i in res:
+                            res.append(i)
+                        return res
+                </code></pre>
+              <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    res = []
+                    return [res.append(x) for x in test_list if x in res]
+                </code></pre>
+                <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>
     {% else %}
         {% if session['potion'] %}
-            <p>Challenge Passed: item already retreived</p>
+            <p id="comment-neutral">Challenge Passed: Item already retrieved.</p>
         {% else %}
             {% if not session['purple_key'] %}
-                <p id="comment">Chest cannot be unlocked without the purple key</p>
+                <p id="comment-neutral">Chest cannot be unlocked without the purple key.</p>
             {% else %}
-                <p id="comment">The potion has been retrieved</p>
+                <p id="comment">The potion has been retrieved.</p>
                 <script>add_item('potion')</script>
                 {% do session.update({'potion':True}) %}
             {% endif %}
         {% endif %}
     {% endif %}
 
-    {{ session['potion'] }}
-
+</div>
 {% endblock %}
 
 {% block body2 %}

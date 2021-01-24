@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block head %}
+{% endblock %}
+{% block body %}
+
+<div id="endscreen">
+    <a
+    class="btn btn-lg itemhover"
+    id="backhome-button"
+    href="{{ url_for('landing_page') }}"
+    role="button">BACK TO HOME</a>
+</div>
+
+<script>
+    localStorage.clear();
+</script>
+
+{% endblock %}

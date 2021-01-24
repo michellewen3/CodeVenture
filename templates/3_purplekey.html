@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'game_base.html' %}
 {% block head %}
 {% endblock %}
 
@@ -6,47 +6,65 @@
 {% endblock %}
 
 {% block gamemap %}
-    <img src="/static/img/area3.jpg" alt="Area 3" />
-{% endblock %}
-{% block moves %}
-<div class="container-fluid">
-    <a
-    class="btn btn-lg"
-    id="page2"
-    href="{{ url_for('page_2') }}"
-    role="button">Down</a>
-</div>
+    <div class="container map_image_parent">
+        <img class="map_image" src="/static/img/area3.jpg" alt="Area 3" />
+        <a
+            class="img-responsive itemhover"
+            id="down_arrow_3"
+            href="{{ url_for('page_2') }}">
+            <img src="/static/img/downarrow.png" alt="Down Arrow">
+        </a>
+        {% if not session['purple_key'] %}
+            <img id="purple_key_image" class="img-responsive itemhover" src="/static/img/purplekey.png" alt="Purple Key">
+            <img id="dragon2_image" class="img-responsive itemhover" src="/static/img/dragon2.png" alt="Dragon Easy">
+        {% else %}
+            <img id="dragon2_image" class="img-responsive itemhover" src="/static/img/dragon2.png" alt="Dragon Easy">
+        {% endif %}
+    </div>
 {% endblock %}
 
 
 {% block codingchallenge %}
+<div class="container" id="codingchallenge">
 
     {% if not session['purple_key'] %}
-        <h1>Answer question</h1>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 1</button>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 2</button>
-
-        <a
-            class="btn btn-lg"
-            
-            href="{{ url_for('update', item='purple_key') }}"
-            role="button">Answer 3</a>
-
-        <p id="comment"></p>
+        <h6 class="question">You have reached a dragon's lair. To get the purple key, you must answer the following question correctly: Which of the following slice statements can be used to reverse a string?</h6>
+        <p id="comment-wrong"> </p>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    string[::-1]
+                </code></pre>
+                <a href="{{ url_for('update', item='purple_key') }}" class="card-link stretched-link"></a>
+            </div>
+        </div>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    string[:-1]
+                </code></pre>
+              <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    [:]
+                </code></pre>
+                <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>
     {% else %}
         <!-- display open chest -->
         {% if feedback != 'None' %}
-            <p id="comment">The purple key has been retrieved</p>
+            <p id="comment">The purple key has been retrieved.</p>
             <script>add_item('purple_key')</script>
         {% else %}
-            <p>Challenge Passed: item already retreived</p>
+            <p id="comment-neutral">Challenge Passed: Item already retrieved.</p>
         {% endif %}
     {% endif %}
 
-    <!-- debug -->
-    {{ session['purple_key'] }}
-
-
+</div>
 {% endblock %}
 
 {% block body2 %}

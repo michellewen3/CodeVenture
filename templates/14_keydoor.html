@@ -1,51 +1,67 @@
-{% extends 'base.html' %}
+{% extends 'game_base.html' %}
 {% block head %}
 
 {% endblock %}
 
 {% block gamemap %}
-    <img src="/static/img/area14.jpg" alt="Area 14" />
-{% endblock %}
-{% block moves %}
+    <div class="container map_image_parent">
+        <img class="map_image" src="/static/img/area14.jpg" alt="Area 14" />
 
-<div class="container-fluid">
+        {% if not session['red_key'] %}
+            <p id="comment">The red key is needed to open the gate.</p>
+            {% if prevpage == '13' %}
+            <a
+                class="img-responsive itemhover"
+                id="left_arrow"
+                href="{{ url_for('page_13', feedback='None', prevpage='14') }}">
+                <img src="/static/img/leftarrow.png" alt="Left Arrow">
+            </a>
+            {% endif %}
+            {% if prevpage == '16' %}
+            <a
+                class="img-responsive itemhover"
+                id="right_arrow"
+                href="{{ url_for('page_16') }}">
+                <img src="/static/img/rightarrow.png" alt="Right Arrow">
+            </a>
+            {% endif %}
+        {% else %}
+        <a
+            class="img-responsive itemhover"
+            id="left_arrow"
+            href="{{ url_for('page_13', feedback='None', prevpage='14') }}">
+            <img src="/static/img/leftarrow.png" alt="Left Arrow">
+        </a>
+        <a
+            class="img-responsive itemhover"
+            id="right_arrow"
+            href="{{ url_for('page_16') }}">
+            <img src="/static/img/rightarrow.png" alt="Right Arrow">
+        </a>
+        <a
+            class="img-responsive itemhover"
+            id="down_arrow"
+            href="{{ url_for('page_15', feedback='None') }}">
+            <img src="/static/img/downarrow.png" alt="Down Arrow">
+        </a>
+        {% endif %}
+
+        {% if not session['red_key'] %}
+            <img id="closeddoor_image2" class="img-responsive itemhover" src="/static/img/closeddoor.png" alt="Closed Door">
+        {% else %}
+            <img id="opendoor_image2" class="img-responsive itemhover" src="/static/img/opendoor.png" alt="Open Door">
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block codingchallenge %}
+<div class="container" id="codingchallenge">
     {% if not session['red_key'] %}
-        {% if prevpage == '13' %}
-            <a
-            class="btn btn-lg"
-            id="page13"
-            href="{{ url_for('page_13', feedback='None', prevpage='14') }}"
-            role="button">Left</a>
-        {% endif %}
-        {% if prevpage == '16' %}
-            <a
-            class="btn btn-lg"
-            id="page16"
-            href="{{ url_for('page_16') }}"
-            role="button">Right</a>
-        {% endif %}
-    {% else %}
-        <a
-        class="btn btn-lg"
-        id="page13"
-        href="{{ url_for('page_13', feedback='None', prevpage='14') }}"
-        role="button">Left</a>
-        <a
-        class="btn btn-lg"
-        id="page16"
-        href="{{ url_for('page_16') }}"
-        role="button">Right</a>
-        <a
-        class="btn btn-lg"
-        id="page15"
-        href="{{ url_for('page_15', feedback='None') }}"
-        role="button">Down</a>
+            <p id="comment-neutral">You must use the red key to unlock the gate.</p>
     {% endif %}
-
 </div>
-
-
 {% endblock %}
+
 
 {% block body2 %}
 <script>

@@ -1,53 +1,92 @@
-{% extends 'base.html' %}
+{% extends 'game_base.html' %}
 {% block head %}
 
 {% endblock %}
 
 
 {% block gamemap %}
-    <img src="/static/img/area5.jpg" alt="Area 5" />
-{% endblock %}
-{% block moves %}
+    <div class="container map_image_parent">
+        <img class="map_image" src="/static/img/area5.jpg" alt="Area 5" />
+        <a
+            class="img-responsive itemhover"
+            id="left_arrow"
+            href="{{ url_for('page_4', feedback='None', prevpage='5') }}">
+            <img src="/static/img/leftarrow.png" alt="Left Arrow">
+        </a>
+        <a
+            class="img-responsive itemhover"
+            id="downleft_arrow"
+            href="{{ url_for('page_9', prevpage='5') }}">
+            <img src="/static/img/bottomleftarrow.png" alt="Bottom Left Arrow">
+        </a>
 
-<div class="container-fluid">
-    <a
-    class="btn btn-lg"
-    id="page4"
-    href="{{ url_for('page_4', feedback='None', prevpage='5') }}"
-    role="button">Left</a>
-    <a
-    class="btn btn-lg"
-    id="page9"
-    href="{{ url_for('page_9', prevpage='5') }}"
-    role="button">Down</a>
-</div>
-
+        {% if not session['spell_book'] %}
+            <img id="spellbook_image" class="img-responsive itemhover" src="/static/img/spellbook.png" alt="Spell Book">
+            <img id="dragon5_image" class="img-responsive itemhover" src="/static/img/dragon5.png" alt="Dragon Hard">
+        {% else %}
+            <img id="dragon5_image" class="img-responsive itemhover" src="/static/img/dragon5.png" alt="Dragon Hard">
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block codingchallenge %}
-
+<div class="container" id="codingchallenge">
     {% if not session['spell_book'] %}
-        <h1>Answer question</h1>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 1</button>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 2</button>
+        <h6 class="question">A dragon seems to be guarding a beloved spell book. Defeat the dragon and get the spell book by answering this question: Which method can check if a string is palindrome?
+        </h6> 
+        <p id="comment-wrong"> </p>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    def palindrome(s):
+                        return s == s[::-1]
+                </code></pre>
+                <a href="{{ url_for('update', item='spell_book') }}" class="card-link stretched-link"></a>
+            </div>
+        </div>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    def palindrome(s):
+                        letters = list(s)
+                        is_palindrome = True
 
-        <a
-            class="btn btn-lg"
-            
-            href="{{ url_for('update', item='spell_book') }}"
-            role="button">Answer 3</a>
-
-        <p id="comment"></p>
+                        for letter in letters:
+                                if letter == letters[-1]:
+                                    letters.remove(-1)
+                                else:
+                                    is_palindrome = False
+                                    
+                        return is_palindrome
+                </code></pre>
+                <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>    
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    def palindrome(s):
+                        is_palindrome = True
+                        for i in range (0, len(s) // 2):
+                            if s[i] == s[(i * -1)] and is_palindrome is True:
+                                is_palindrome = False
+                            else:
+                                is_palindrome = True
+                        return is_palindrome
+                </code></pre>
+            <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>
     {% else %}
         <!-- display open chest -->
         {% if feedback != 'None' %}
-            <p id="comment">The spell book has been retrieved</p>
+            <p id="comment">The spell book has been retrieved.</p>
             <script>add_item('spell_book')</script>
         {% else %}
-            <p>Challenge Passed: item already retreived</p>
+            <p id="comment-neutral">Challenge Passed: Item already retrieved.</p>
         {% endif %}
     {% endif %}
-
+</div>
 {% endblock %}
 
 {% block body2 %}
