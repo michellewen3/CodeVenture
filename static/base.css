@@ -84,11 +84,16 @@ h6 {
 /* Inventory */
 .inventory-container {
     position: relative;
-    top: 0;
+    background-image: url("/static/img/inventory-hor.jpg");
+    /* top: 0;
     left: 0;
-    max-width: 65%;
+    max-width: 65%; */
     text-align: center;
-    padding: 1rem;
+    /* padding-left: 20rem;
+    padding-right: 20rem;
+    padding: 1rem; */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 #inventory-slots {
     position: relative;
@@ -99,16 +104,16 @@ h6 {
 }
 #purple_key_inventory {
     position: absolute;
-    top: 39%;
-    left: 19.25%;
+    top: 36%;
+    left: 10%;
     width: 46px;
     height: auto;
     visibility: hidden;
 }
 #spell_book_inventory {
     position: absolute;
-    top: 25%;
-    left: 24.5%;
+    top: 18%;
+    left: 23.5%;
     width: 50px;
     height: auto;
     visibility: hidden;
@@ -116,7 +121,7 @@ h6 {
 #potion_inventory {
     position: absolute;
     top: 8%;
-    left: 28%;
+    left: 27%;
     width: 80px;
     height: auto;
     visibility: hidden;
@@ -124,15 +129,15 @@ h6 {
 #red_key_inventory {
     position: absolute;
     top: 36%;
-    left: 35.25%;
+    left: 55.5%;
     width: 46px;
     height: auto;
     visibility: hidden;
 }
 #infinity_stone_inventory {
     position: absolute;
-    top: 25%;
-    left: 40.25%;
+    top: 18%;
+    left: 81.75%;
     width: 45px;
     height: auto;
     visibility: hidden;
@@ -562,4 +567,12 @@ pre code {
     outline: 3px solid;
     color: whitesmoke;
     font-weight: bold;
+}
+#avatar {
+    position: absolute;
+    top: 2%;
+    left: 67%;
+    width: 60px;
+    height: auto;
+    z-index: 5;
 }
