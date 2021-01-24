@@ -1,76 +1,565 @@
-#inventory {
-    text-align: center;
-    outline: 2px solid;
+/* Page Transition */
+@keyframes fade-out {
+    from { opacity: 1 }
+      to { opacity: 0 }
+}
+@keyframes fade-in {
+    from { opacity: 0 }
+      to { opacity: 1 }
+}
+#fader.fade-out {
+    opacity: 0;
+    animation-name: fade-out;
 }
 
+#fader.fade-in {
+    opacity: 1;
+    animation-name: fade-in;
+}
+#fader {
+    position: fixed;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999999;
+    pointer-events: none;
+    /* background-image: url(/static/img/darkbackground.png); */
+    /* background-size: 180% auto; */
+    background-color: rgba(0, 0, 0, 0.20);
+    animation-duration: 5000ms;
+    animation-timing-function: ease-in-out;
+}
+/* NavBar */
+.navbar {
+    min-height: 50px;
+    text-transform: uppercase;
+    /* font-weight: 600; */
+    letter-spacing: 0.1rem;
+    background: rgba(0, 0, 0, 0.75) !important;
+}
+.navbar-nav li {
+    padding-right: 1.5rem;
+}
+.navbar-dark .navbar-nav .navbar-link {
+    color: white;
+}
+.navbar-brand {
+    padding-top: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+#collapsibleNavbar {
+    padding-left: 16px;
+    padding-top: 0.2rem;
+}
+#logo {
+    filter: invert(100%);
+    height: 42px;
+    padding-left: 0.3rem;
+}
+
+
+body {
+    background-image: url('/static/img/darkbackground.png');
+    background-size: 180% auto;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+.all-content {
+    margin-top: 5rem;
+    position: relative;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Abril Fatface', serif;
+}
+
+
+
+
+/* Inventory */
+.inventory-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    max-width: 65%;
+    text-align: center;
+    padding: 1rem;
+}
+#inventory-slots {
+    position: relative;
+    top: 0;
+    left: 0;
+    max-height: 60%;
+    text-align: center;
+}
+#purple_key_inventory {
+    position: absolute;
+    top: 39%;
+    left: 19.25%;
+    width: 46px;
+    height: auto;
+    visibility: hidden;
+}
+#spell_book_inventory {
+    position: absolute;
+    top: 25%;
+    left: 24.5%;
+    width: 50px;
+    height: auto;
+    visibility: hidden;
+}
+#potion_inventory {
+    position: absolute;
+    top: 8%;
+    left: 28%;
+    width: 80px;
+    height: auto;
+    visibility: hidden;
+}
+#red_key_inventory {
+    position: absolute;
+    top: 36%;
+    left: 35.25%;
+    width: 46px;
+    height: auto;
+    visibility: hidden;
+}
+#infinity_stone_inventory {
+    position: absolute;
+    top: 25%;
+    left: 40.25%;
+    width: 45px;
+    height: auto;
+    visibility: hidden;
+}
+
+
+/* Map */
+.map-container {
+    height: 50%;
+}
 #map{
     text-align: center;
     outline: 2px solid;
 }
 
+.map_image_parent {
+    position: relative;
+    top: 0;
+    left: 0;
+    max-width: 50%;
+}
+.map_image {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+#purple_key_image {
+    position: absolute;
+    top: 33%;
+    left: 46%;
+    width: 60px;
+    height: auto;
+}
+#dragon2_image {
+    position: absolute;
+    top: 42%;
+    left: 40%;
+    width: 130px;
+    height: auto;
+}
+#spellbook_image {
+    position: absolute;
+    top: 38%;
+    left: 57%;
+    width: 60px;
+    height: auto;
+}
+#dragon4_image {
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    width: 180px;
+    height: auto;
+}
+#infinitystone_image {
+    position: absolute;
+    top: 60%;
+    left: 47%;
+    width: 50px;
+    height: auto;
+}
+#dragon3_image {
+    position: absolute;
+    top: 30%;
+    left: 45%;
+    width: 220px;
+    height: auto;
+}
+#dragon5_image {
+    position: absolute;
+    top: 32%;
+    left: 41%;
+    width: 120px;
+    height: auto;
+}
+#guard_image {
+    position: absolute;
+    top: 31%;
+    left: 41%;
+    width: 115px;
+    height: auto;
+}
+#closedchest_image {
+    position: absolute;
+    top: 58%;
+    left: 46%;
+    width: 55px;
+    height: auto;
+}
+#openchest_image {
+    position: absolute;
+    top: 58%;
+    left: 46%;
+    width: 55px;
+    height: auto;
+}
+#potion_image {
+    position: absolute;
+    top: 35%;
+    left: 42.5%;
+    width: 100px;
+    height: auto;
+}
+#red_key_image {
+    position: absolute;
+    top: 47%;
+    left: 53%;
+    width: 60px;
+    height: auto;
+}
+#dragon1_image {
+    position: absolute;
+    top: 39%;
+    left: 33%;
+    width: 150px;
+    height: auto;
+}
+#closeddoor_image {
+    position: absolute;
+    top: 25%;
+    left: 43%;
+    width: 115px;
+    height: auto;
+}
+#bluebyte_image {
+    position: absolute;
+    top: 42%;
+    left: 45%;
+    width: 100px;
+    height: auto;
+}
+#opendoor_image {
+    position: absolute;
+    top: 30%;
+    left: 43%;
+    width: 140px;
+    height: auto;
+}
+#closeddoor_image2 {
+    position: absolute;
+    top: 25%;
+    left: 43%;
+    width: 115px;
+    height: auto;
+}
+#pinkbyte_image {
+    position: absolute;
+    top: 36%;
+    left: 45%;
+    width: 100px;
+    height: auto;
+}
+#opendoor_image2 {
+    position: absolute;
+    top: 30%;
+    left: 43%;
+    width: 140px;
+    height: auto;
+}
+#graybyte_image {
+    position: absolute;
+    top: 35%;
+    left: 43%;
+    width: 100px;
+    height: auto;
+}
+#greenbyte_image {
+    position: absolute;
+    top: 35%;
+    left: 43%;
+    width: 100px;
+    height: auto;
+}
+#redbyte_image {
+    position: absolute;
+    top: 35%;
+    left: 43%;
+    width: 100px;
+    height: auto;
+}
+#yellowbyte_image {
+    position: absolute;
+    top: 35%;
+    left: 43%;
+    width: 100px;
+    height: auto;
+}
+#familyclosed_image {
+    position: absolute;
+    top: 63%;
+    left: 25%;
+    width: 150px;
+    height: auto;
+}
+
+
+
+.itemhover:hover {
+    transform: scale(1.07);
+    box-shadow: none;
+}
 img {
     max-width: 100%;
     max-height: 100%;
 }
-
 #directions{
     text-align: center;
     outline: 2px solid;
     padding: 10px;
 }
 
+/* Arrow Directions */
+#right_arrow {
+    position: absolute;
+    top: 48%;
+    left: 90%;
+    width: 40px;
+    height: auto;
+}
+#left_arrow {
+    position: absolute;
+    top: 48%;
+    left: 4%;
+    width: 40px;
+    height: auto;
+}
+#up_arrow {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    width: 40px;
+    height: auto;
+}
+#up_arrow_8 {
+    position: absolute;
+    top: 5%;
+    left: 46%;
+    width: 40px;
+    height: auto;
+}
+#upleft_arrow {
+    position: absolute;
+    top: 2%;
+    left: 28%;
+    width: 60px;
+    height: auto;
+}
+#upright_arrow {
+    position: absolute;
+    top: 2%;
+    left: 67%;
+    width: 60px;
+    height: auto;
+}
+#down_arrow {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    width: 40px;
+    height: auto;
+}
+#down_arrow_3 {
+    position: absolute;
+    top: 85%;
+    left: 46%;
+    width: 40px;
+    height: auto;
+}
+#downleft_arrow {
+    position: absolute;
+    top: 85%;
+    left: 29%;
+    width: 60px;
+    height: auto;
+}
+#downright_arrow {
+    position: absolute;
+    top: 75%;
+    left: 86%;
+    width: 60px;
+    height: auto;
+}
+
+
+/* Coding Challenges */
 #codingchallenge{
     text-align: center;
-    outline: 2px solid;
+    /* outline: 2px solid; */
+}
+.question {
+    margin: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    color: bisque;
+}
+.card {
+    max-width: 100%;
+}
+.card-body {
+    text-align: left;
+    /* padding-top: 0.5rem; */
+}
+.card-text {
+    color: whitesmoke;
+    margin-bottom: 0;
+}
+.card-style {
+    border: whitesmoke;
+    border-style: solid;
+    /* border-width: 0.25rem; */
+    /* box-shadow: 0 6px 10px rgba(255, 255, 255, 0.75),
+      0 0 6px rgba(255, 255, 255, 0.75); */
+    transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+      0.3s box-shadow,
+      0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+    cursor: pointer;
+    margin: 20px;
+    background: transparent;
+}
+.card:hover {
+transform: scale(1.05);
+box-shadow: none;
+}
+#comment-wrong {
+    color: coral;
+    font-size: 1.5rem;
+}
+#comment {
+    color: darkseagreen;
+    margin: 1rem;
+    font-size: 1.5rem;
+}
+#comment-neutral {
+    color: beige;
+    margin: 1rem;
+    font-size: 1.5rem;
+}
+.q-pre {
+    padding-left: 5%;
+    text-align: left;
+}
+pre code {
+    color: whitesmoke;
+    
 }
 
-#btn {
-    outline: 3px solid;
-}
-
-/* The side navigation menu */
-.sidenav {
-    width: 130px;
-    position: fixed;
-    z-index: 1;
-    top: 20px;
-    left: 10px;
-    background: #eee;
-    overflow-x: hidden;
-    padding: 8px 0;
-}
-
-/* The navigation menu links */
-.sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #2196F3;
-    display: block;
-}
-
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-    color: #064579;
-}
-
-/* Position and style the close button (top right corner) */
-.sidenav .closebtn {
+#footer {
     position: absolute;
+    width: 100%;
+}
+
+
+
+#landingpage {
+    position: fixed;
+    background-image: url(/static/img/title_slide.JPG); 
+    background-size: cover;
+    text-align: center;
+    width: 100%;
+    height: 100%;
     top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+    left: 0;
 }
-
-.main {
-    margin-left: 140px; /* Same width as the sidebar + left position in px */
-    font-size: 28px; /* Increased text to enable scrolling */
-    padding: 0px 10px;
+#start-button {
+    margin-top: 30%;
+    outline: 3px solid;
+    color: darkgray;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+#dialogue {
+    position: fixed;
+    background-image: url(/static/img/dialogue_slide.JPG);
+    background-size: cover;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+#endscreen {
+    position: fixed;
+    background-image: url(/static/img/endscreen.jpg); 
+    background-size: cover;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+#backhome-button {
+    margin-top: 21%;
+    margin-left: 13rem;
+    outline: 3px solid;
+    color: gray;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+#next-button {
+    margin-top: 30%;
+    outline: 3px solid;
+    color: darkgray;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+.comingsoon {
+    color: bisque;
+    text-align: center;
+    padding-top: 25%;
+}
+.about {
+    color: bisque;
+    text-align: center;
+    padding-top: 25%;
+}
+.overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+}
+#save-family {
+    position: absolute;
+    top: 45%;
+    left: 46%;
+    outline: 3px solid;
+    color: whitesmoke;
+    font-weight: bold;
 }

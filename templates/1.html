@@ -1,27 +1,36 @@
-{% extends 'base.html' %}
+{% extends 'game_base.html' %}
 {% block head %}
 
 {% endblock %}
 
 {% block gamemap %}
-    <img src="/static/img/area1.jpg" alt="Area 1" />
-{% endblock %}
-{% block moves %}
-    <a
-    class="btn btn-lg"
-    id="page2"
-    href="{{ url_for('page_2') }}"
-    role="button">Top</a>
-    <a
-    class="btn btn-lg"
-    id="page6"
-    href="{{ url_for('page_6', feedback='None', prevpage='1') }}"
-    role="button">Right</a>
-    <a
-    class="btn btn-lg"
-    id="page10"
-    href="{{ url_for('page_10', feedback='None', prevpage='1') }}"
-    role="button">Down</a>
+    <div class="container map_image_parent">
+        <img class="map_image" src="/static/img/area1.jpg" alt="Area 1" />
+        <a
+            class="img-responsive itemhover"
+            id="up_arrow"
+            href="{{ url_for('page_2') }}">
+            <img src="/static/img/uparrow.png" alt="Up Arrow">
+        </a>
+        <a
+            class="img-responsive itemhover"
+            id="right_arrow"
+            href="{{ url_for('page_6', feedback='None', prevpage='1') }}">
+            <img src="/static/img/rightarrow.png" alt="Right Arrow">
+        </a>
+        <a
+            class="img-responsive itemhover"
+            id="down_arrow"
+            href="{{ url_for('page_10', feedback='None', prevpage='1') }}">
+            <img src="/static/img/downarrow.png" alt="Down Arrow">
+        </a>
+        <a
+            class="img-responsive itemhover"
+            id="left_arrow"
+            href="{{ url_for('start') }}">
+            <img src="/static/img/leftarrow.png" alt="Left Arrow">
+        </a>
+    </div>
 {% endblock %}
 
 {% block body2 %}

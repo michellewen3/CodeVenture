@@ -1,48 +1,76 @@
-{% extends 'base.html' %}
+{% extends 'game_base.html' %}
 {% block head %}
 
 {% endblock %}
 
 {% block gamemap %}
-    <img src="/static/img/area15.jpg" alt="Area 15" />
-{% endblock %}
-{% block moves %}
-
-<div class="container-fluid">
-    <a
-    class="btn btn-lg"
-    id="page14"
-    href="{{ url_for('page_14', prevpage='15') }}"
-    role="button">Top</a>
-</div>
-
+    <div class="container map_image_parent">
+        <img class="map_image" src="/static/img/area15.jpg" alt="Area 15" />
+        <a
+            class="img-responsive itemhover"
+            id="up_arrow_8"
+            href="{{ url_for('page_14', prevpage='15') }}">
+            <img src="/static/img/uparrow.png" alt="Up Arrow">
+        </a>
+        {% if not session['infinity_stone'] %}
+            <img id="infinitystone_image" class="img-responsive itemhover" src="/static/img/infinitystone.png" alt="Infinity Stone">
+            <img id="dragon4_image" class="img-responsive itemhover" src="/static/img/dragon4.png" alt="Dragon Medium">
+        {% else %}
+            <img id="dragon4_image" class="img-responsive itemhover" src="/static/img/dragon4.png" alt="Dragon Medium">
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block codingchallenge %}
-
+<div class="container" id="codingchallenge">
     {% if not session['infinity_stone'] %}
-        <h1>Answer question</h1>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 1</button>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 2</button>
 
-        <a
-            class="btn btn-lg"
-            
-            href="{{ url_for('update', item='infinity_stone') }}"
-            role="button">Answer 3</a>
+        <h6 class="question">You have reached a dragon's lair. Defeat the dragon by completing this task: Given a list 'test_list' and a value 'val', remove all instances of that value in-place and return the new length.</h6> 
+        <p id="comment-wrong"> </p>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    def remove_items(test_list, val):
+                        for i in test_list:
+                            if (i == val):
+                                test_list.remove(i)
 
-        <p id="comment"></p>
+                        return test_list
+                </code></pre>
+                <a href="{{ url_for('update', item='infinity_stone') }}" class="card-link stretched-link"></a>
+            </div>
+        </div>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    def remove_items(test_list, val):
+                        res = filter((val).__ne__, test_list)
+                        return res
+                </code></pre>
+                <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>    
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    def remove_items(test_list, val):
+                        res = [i for i in test_list if i == val]
+                        return res
+                </code></pre>
+                <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>
     {% else %}
         <!-- display open chest -->
         {% if feedback != 'None' %}
-            <p id="comment">The infinity_stone has been retrieved</p>
+            <p id="comment">The infinity stone has been retrieved.</p>
             <script>add_item('infinity_stone')</script>
         {% else %}
-            <p>Challenge Passed: item already retreived</p>
+            <p id="comment-neutral">Challenge Passed: Item already retrieved.</p>
         {% endif %}
     {% endif %}
 
-    
+</div>
 {% endblock %}
 
 {% block body2 %}

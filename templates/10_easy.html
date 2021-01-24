@@ -1,61 +1,94 @@
-{% extends 'base.html' %}
+{% extends 'game_base.html' %}
 {% block head %}
 
 {% endblock %}
 
 {% block gamemap %}
-    <img src="/static/img/area10.jpg" alt="Area 10" />
-{% endblock %}
-{% block moves %}
-<div class="container-fluid">
-    {% if session['page10_easy'] %}
+    <div class="container map_image_parent">
+        <img class="map_image" src="/static/img/area10.jpg" alt="Area 10" />
+        {% if session['page10_easy'] %}
+        <a
+            class="img-responsive itemhover"
+            id="up_arrow_8"
+            href="{{ url_for('page_1') }}">
+            <img src="/static/img/uparrow.png" alt="Up Arrow">
+        </a>
+        <a
+            class="img-responsive itemhover"
+            id="down_arrow_3"
+            href="{{ url_for('page_11') }}">
+            <img src="/static/img/downarrow.png" alt="Down Arrow">
+        </a>
+        {% else %}
+            {% if prevpage == '1' %}
             <a
-            class="btn btn-lg"
-            id="page1"
-            href="{{ url_for('page_1') }}"
-            role="button">Top</a>
+                class="img-responsive itemhover"
+                id="up_arrow_8"
+                href="{{ url_for('page_1') }}">
+                <img src="/static/img/uparrow.png" alt="Up Arrow">
+            </a>
+            {% elif prevpage == '11' %}
             <a
-            class="btn btn-lg"
-            id="page11"
-            href="{{ url_for('page_11') }}"
-            role="button">Down</a>
-    {% else %}
-        {% if prevpage == '1' %}
-            <a
-            class="btn btn-lg"
-            id="page1"
-            href="{{ url_for('page_1') }}"
-            role="button">Top</a>
-        {% elif prevpage == '11' %}
-            <a
-            class="btn btn-lg"
-            id="page11"
-            href="{{ url_for('page_11') }}"
-            role="button">Down</a>
-        {% endif %}
-    {% endif %}   
-</div>
+                class="img-responsive itemhover"
+                id="down_arrow_3"
+                href="{{ url_for('page_11') }}">
+                <img src="/static/img/downarrow.png" alt="Down Arrow">
+            </a>
+            {% endif %}
+        {% endif %}   
 
+
+        {% if not session['page10_easy'] %}
+            <img id="greenbyte_image" class="img-responsive itemhover" src="/static/img/greenbyte.png" alt="Green Byte Easy">
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block codingchallenge %}
+<div class="container" id="codingchallenge">
 
     {% if not session['page10_easy'] %}
-        <h1>Answer question</h1>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 1</button>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 2</button>
-
-        <a
-            class="btn btn-lg"
-            
-            href="{{ url_for('update', item='page10_easy') }}"
-            role="button">Answer 3</a>
-
-        <p id="comment"></p>
+        <h6 class="question">Green Byte presents you with a challenge: What output does the following code snippet generate?</h6> 
+        <pre class="q-pre"><code>
+            d = {'foo': 1, 'bar': 2, 'baz': 3}
+            while d:
+                print(d.popitem())
+            print('Done.')
+        </code></pre>
+        <p id="comment-wrong"> </p>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    Done.
+                </code></pre>
+                <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    ('baz', 3)
+                    ('bar', 2)
+                    ('foo', 1)
+                    Done.
+                </code></pre>
+                <a href="{{ url_for('update', item='page10_easy') }}" class="card-link stretched-link"></a>
+            </div>
+        </div>    
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    foo
+                    bar
+                    Baz
+                </code></pre>
+            <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>
     {% else %}
-            <p id="comment">challenge passed</p>
+            <p id="comment">Challenge Passed</p>
     {% endif %}
-
+</div>
 {% endblock %}
 
 {% block body2 %}

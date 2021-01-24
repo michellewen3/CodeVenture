@@ -1,23 +1,18 @@
-{% extends 'base.html' %}
+{% extends 'game_base.html' %}
 {% block head %}
 
 {% endblock %}
 
 {% block gamemap %}
-    <img src="/static/img/area12.jpg" alt="Area 12" />
-{% endblock %}
-{% block moves %}
-
-<h1>a wise man once said</h1>
-<div class="container-fluid">
-    <a
-    class="btn btn-lg"
-    id="page11"
-    href="{{ url_for('page_11') }}"
-    role="button">Top</a>
-</div>
-
-
+    <div class="container map_image_parent">
+        <img class="map_image" src="/static/img/area12.jpg" alt="Area 12" />
+        <a
+            class="img-responsive itemhover"
+            id="up_arrow_8"
+            href="{{ url_for('page_11') }}">
+            <img src="/static/img/uparrow.png" alt="Up Arrow">
+        </a>
+    </div>
 {% endblock %}
 
 {% block body2 %}

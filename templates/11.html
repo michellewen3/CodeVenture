@@ -1,32 +1,32 @@
-{% extends 'base.html' %}
+{% extends 'game_base.html' %}
 {% block head %}
 
 {% endblock %}
 
 {% block gamemap %}
-    <img src="/static/img/area11.jpg" alt="Area 11" />
-{% endblock %}
-{% block moves %}
+    <div class="container map_image_parent">
+        <img class="map_image" src="/static/img/area11.jpg" alt="Area 11" />
+        <a
+            class="img-responsive itemhover"
+            id="up_arrow"
+            href="{{ url_for('page_10', feedback='None', prevpage='1') }}">
+            <img src="/static/img/uparrow.png" alt="Up Arrow">
+        </a>
+        <a
+            class="img-responsive itemhover"
+            id="right_arrow"
+            href="{{ url_for('page_13', feedback='None', prevpage='11') }}">
+            <img src="/static/img/rightarrow.png" alt="Right Arrow">
+        </a>
+        <a
+            class="img-responsive itemhover"
+            id="down_arrow"
+            href="{{ url_for('page_12') }}">
+            <img src="/static/img/downarrow.png" alt="Down Arrow">
+        </a>
 
-<div class="container-fluid">
-    <a
-    class="btn btn-lg"
-    id="page10"
-    href="{{ url_for('page_10', feedback='None', prevpage='1') }}"
-    role="button">Top</a>
-    <a
-    class="btn btn-lg"
-    id="page13"
-    href="{{ url_for('page_13', feedback='None', prevpage='11') }}"
-    role="button">Right</a>
-    <a
-    class="btn btn-lg"
-    id="page12"
-    href="{{ url_for('page_12') }}"
-    role="button">Down</a>
-</div>
 
-
+    </div>
 {% endblock %}
 
 {% block body2 %}

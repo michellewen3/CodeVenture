@@ -1,50 +1,65 @@
-{% extends 'base.html' %}
+{% extends 'game_base.html' %}
 {% block head %}
 
 {% endblock %}
 
 {% block gamemap %}
-    <img src="/static/img/area9.jpg" alt="Area 9" />
+    <div class="container map_image_parent">
+        <img class="map_image" src="/static/img/area9.jpg" alt="Area 9" />
+        {% if not session['potion'] %}
+            {% if prevpage == '7' %}
+            <a
+                class="img-responsive itemhover"
+                id="upleft_arrow"
+                href="{{ url_for('page_7') }}">
+                <img src="/static/img/upleftarrow.png" alt="UpLeft Arrow">
+            </a>
+            {% endif %}
+            {% if prevpage == '5' %}
+            <a
+                class="img-responsive itemhover"
+                id="upright_arrow"
+                href="{{ url_for('page_5', feedback='None') }}">
+                <img src="/static/img/uprightarrow.png" alt="UpRight Arrow">
+            </a>
+            {% endif %}
+        {% else %}
+        <a
+            class="img-responsive itemhover"
+            id="upleft_arrow"
+            href="{{ url_for('page_7') }}">
+            <img src="/static/img/upleftarrow.png" alt="UpLeft Arrow">
+        </a>
+        <a
+            class="img-responsive itemhover"
+            id="upright_arrow"
+            href="{{ url_for('page_5', feedback='None') }}">
+            <img src="/static/img/uprightarrow.png" alt="UpRight Arrow">
+        </a>
+            <a
+            class="img-responsive itemhover"
+            id="down_arrow"
+            href="{{ url_for('page_16') }}">
+            <img src="/static/img/downarrow.png" alt="Down Arrow">
+        </a>
+        {% endif %}
+
+
+        {% if not session['potion'] %}
+            <img id="closeddoor_image" class="img-responsive itemhover" src="/static/img/closeddoor.png" alt="Closed Door">
+            <img id="bluebyte_image" class="img-responsive itemhover" src="/static/img/bluebyte.png" alt="Blue Byte Guard">
+        {% else %}
+            <img id="opendoor_image" class="img-responsive itemhover" src="/static/img/opendoor.png" alt="Open Door">
+        {% endif %}
+    </div>
 {% endblock %}
-{% block moves %}
 
-<div class="container-fluid">
-
+{% block codingchallenge %}
+<div class="container" id="codingchallenge">
     {% if not session['potion'] %}
-        {% if prevpage == '7' %}
-            <a
-            class="btn btn-lg"
-            id="page7"
-            href="{{ url_for('page_7') }}"
-            role="button">TopLeft</a>
-        {% endif %}
-        {% if prevpage == '5' %}
-            <a
-            class="btn btn-lg"
-            id="page5"
-            href="{{ url_for('page_5', feedback='None') }}"
-            role="button">TopRight</a>
-        {% endif %}
-    {% else %}
-        <a
-        class="btn btn-lg"
-        id="page7"
-        href="{{ url_for('page_7') }}"
-        role="button">TopLeft</a>
-        <a
-        class="btn btn-lg"
-        id="page5"
-        href="{{ url_for('page_5', feedback='None') }}"
-        role="button">TopRight</a>
-        <a
-        class="btn btn-lg"
-        id="page16"
-        href="{{ url_for('page_16') }}"
-        role="button">Down</a>
+    <p id="comment-neutral">You need a potion to defeat the guard.</p>
     {% endif %}
 </div>
-
-
 {% endblock %}
 
 {% block body2 %}

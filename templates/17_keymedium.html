@@ -1,48 +1,69 @@
-{% extends 'base.html' %}
+{% extends 'game_base.html' %}
 {% block head %}
 
 {% endblock %}
 
 {% block gamemap %}
-    <img src="/static/img/area17.jpg" alt="Area 17" />
-{% endblock %}
-{% block moves %}
+    <div class="container map_image_parent">
+        <img class="map_image" src="/static/img/area17.jpg" alt="Area 17" />
+        <a
+            class="img-responsive itemhover"
+            id="left_arrow"
+            href="{{ url_for('page_16') }}">
+            <img src="/static/img/leftarrow.png" alt="Left Arrow">
+        </a>
 
-<div class="container-fluid">
-    <a
-    class="btn btn-lg"
-    id="page16"
-    href="{{ url_for('page_16') }}"
-    role="button">Left</a>
-</div>
-
+        {% if not session['red_key'] %}
+            <img id="red_key_image" class="img-responsive itemhover" src="/static/img/redkey.png" alt="Red Key">
+            <img id="dragon1_image" class="img-responsive itemhover" src="/static/img/dragon1.png" alt="Dragon Medium">
+        {% else %}
+            <img id="dragon1_image" class="img-responsive itemhover" src="/static/img/dragon1.png" alt="Dragon Medium">
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block codingchallenge %}
-
+<div class="container" id="codingchallenge">
     {% if not session['red_key'] %}
-        <h1>Answer question</h1>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 1</button>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 2</button>
-
-        <a
-            class="btn btn-lg"
-            
-            href="{{ url_for('update', item='red_key') }}"
-            role="button">Answer 3</a>
-
-        <p id="comment"></p>
+        <h6 class="question">You have reached a dragon's lair. To retrieve the red key, you must answer this quesion: Which method could be used to get 4 random elements from the following list?</h6> 
+        <pre class="q-pre"><code>
+            samplelist = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200]
+        </code></pre>
+        <p id="comment-wrong"> </p>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    random.choice(samplelist, 4)
+                </code></pre>
+                <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    random.sample(samplelist, 4)
+                </code></pre>
+                <a href="{{ url_for('update', item='red_key') }}" class="card-link stretched-link"></a>
+            </div>
+        </div>    
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    random.randint(samplelist, 4)
+                </code></pre>
+            <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>
     {% else %}
-        <!-- display open chest -->
         {% if feedback != 'None' %}
-            <p id="comment">The red key has been retrieved</p>
+            <p id="comment">The red key has been retrieved.</p>
             <script>add_item('red_key')</script>
         {% else %}
-            <p>Challenge Passed: item already retreived</p>
+            <p id="comment-neutral">Challenge Passed: Item already retrieved.</p>
         {% endif %}
     {% endif %}
 
-    
+</div>
 {% endblock %}
 
 {% block body2 %}

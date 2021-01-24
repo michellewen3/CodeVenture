@@ -5,8 +5,22 @@ app.jinja_env.add_extension('jinja2.ext.do')
 
 app.secret_key = b'\x17\xef\xa3]\xfd\xc9\x18\x061\x1b\xb2\x92e$\xa5\x9a\xdd\xd1\xa6\x0eB|\xcc\xc9\x86l \xf6i\x0c\x9b '
 
+@app.route('/comingsoon')
+def comingsoon():
+    return render_template('comingsoon.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 @app.route('/')
-def home():
+def landing_page():
+    # clear sessions and local storage
+    session.clear()
+    return render_template('landing_page.html')
+
+@app.route('/dialogue')
+def dialogue():
     # initialize inventory items
     session['purple_key'] = False
     session['potion'] = False
@@ -17,6 +31,10 @@ def home():
     session['page6_easy'] = False
     session['page10_easy'] = False
     session['page13_medium'] = False
+    return render_template('dialogue.html')
+   
+@app.route('/start')
+def start():
     return render_template('start.html')
 
 @app.route('/update/<item>')
@@ -40,6 +58,9 @@ def update(item):
     elif item == 'infinity_stone':
         session['infinity_stone'] = True
         page = 'page_15'
+    elif item == 'family_guard':
+        session['family_guard'] = True
+        page = 'page_18'
     elif item == 'page4_medium':
         session['page4_medium'] = True
         page = 'page_4'
@@ -157,4 +178,6 @@ def page_17(feedback):
 def page_18():
     return render_template('18_bossdragon.html')
 
-
+@app.route('/end')
+def endscreen():
+    return render_template('endscreen.html')

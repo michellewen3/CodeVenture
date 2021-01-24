@@ -1,65 +1,102 @@
-{% extends 'base.html' %}
+{% extends 'game_base.html' %}
 {% block head %}
 
 {% endblock %}
 
 
 {% block gamemap %}
-    <img src="/static/img/area4.jpg" alt="Area 4" />
-{% endblock %}
-{% block moves %}
-
-<div class="container-fluid">
-
-    {% if session['page4_medium'] %}
+    <div class="container map_image_parent">
+        <img class="map_image" src="/static/img/area4.jpg" alt="Area 4" />
+        {% if session['page4_medium'] %}
         <a
-        class="btn btn-lg"
-        id="page2"
-        href="{{ url_for('page_2') }}"
-        role="button">Left</a>
+            class="img-responsive itemhover"
+            id="left_arrow"
+            href="{{ url_for('page_2') }}">
+            <img src="/static/img/leftarrow.png" alt="Left Arrow">
+        </a>
         <a
-        class="btn btn-lg"
-        id="page5"
-        href="{{ url_for('page_5', feedback='None') }}"
-        role="button">Right</a>
-    {% else %}
-        {% if prevpage == '2' %}
-            <a
-            class="btn btn-lg"
-            id="page2"
-            href="{{ url_for('page_2') }}"
-            role="button">Left</a>
-        {% elif prevpage == '5' %}
-            <a
-            class="btn btn-lg"
-            id="page5"
-            href="{{ url_for('page_5', feedback='None') }}"
-            role="button">Right</a>
+            class="img-responsive itemhover"
+            id="right_arrow"
+            href="{{ url_for('page_5', feedback='None') }}">
+            <img src="/static/img/rightarrow.png" alt="Right Arrow">
+        </a>
+        {% else %}
+            {% if prevpage == '2' %}
+                <a
+                    class="img-responsive itemhover"
+                    id="left_arrow"
+                    href="{{ url_for('page_2') }}">
+                    <img src="/static/img/leftarrow.png" alt="Left Arrow">
+                </a>
+            {% elif prevpage == '5' %}
+                <a
+                    class="img-responsive itemhover"
+                    id="right_arrow"
+                    href="{{ url_for('page_5', feedback='None') }}">
+                    <img src="/static/img/rightarrow.png" alt="Right Arrow">
+                </a>
+            {% endif %}
         {% endif %}
-    {% endif %}
-
-</div>
-
+        
+        {% if not session['page4_medium'] %}
+            <img id="graybyte_image" class="img-responsive itemhover" src="/static/img/graybyte.png" alt="Gray Byte Medium">
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block codingchallenge %}
-
+<div class="container" id="codingchallenge">
     {% if not session['page4_medium'] %}
-        <h1>Answer question</h1>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 1</button>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 2</button>
-
-        <a
-            class="btn btn-lg"
-            
-            href="{{ url_for('update', item='page4_medium') }}"
-            role="button">Answer 3</a>
-
-        <p id="comment"></p>
+        <h6 class="question">Whoops! A Gray Byte is standing in your way. Answer the following question to pass them: Which function can compute greatest common divisor of 2 positive integers?</h6>
+        <p id="comment-wrong"> </p>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    def gcd(x, y):
+                        gcd = 0
+                
+                        if x % y == 0:
+                            return y
+                
+                        for k in range(int(y), 0, -1):
+                            if x % k == 0 and y % k == 0:
+                                gcd = k
+                                break
+                        return gcd
+                </code></pre>
+                <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    def gcd(x, y):
+                        i = 1
+                        while (i <= x and i <= y):
+                            if (x % i == 0 and y % i == 0):
+                                i = gcd
+                            i = i + 1
+                        return gcd
+                </code></pre>
+                <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    def gcd(x, y):
+                        if(y == 0):
+                            return x
+                        else:
+                            return gcd(y, x % y)
+                </code></pre>
+                <a href="{{ url_for('update', item='page4_medium') }}" class="card-link stretched-link"></a>
+            </div>
+        </div>
     {% else %}
-            <p id="comment">challenge passed</p>
+            <p id="comment">Challenge Passed</p>
     {% endif %}
-
+</div>
 {% endblock %}
 
 {% block body2 %}

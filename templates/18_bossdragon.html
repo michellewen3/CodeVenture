@@ -1,46 +1,91 @@
-{% extends 'base.html' %}
+{% extends 'game_base.html' %}
 {% block head %}
 
 {% endblock %}
 
 {% block gamemap %}
-    <img src="/static/img/area18.jpg" alt="Area 18" />
-{% endblock %}
-{% block moves %}
-
-<div class="container-fluid">
+<div class="container map_image_parent">
+    <img class="map_image" src="/static/img/area18.jpg" alt="Area 18" />
     <a
-    class="btn btn-lg"
-    id="page16"
-    href="{{ url_for('page_16') }}"
-    role="button">Top</a>
+        class="img-responsive itemhover"
+        id="up_arrow_8"
+        href="{{ url_for('page_16') }}">
+        <img src="/static/img/uparrow.png" alt="Up Arrow">
+    </a>
+
+    {% if not session['family_guard'] %}
+        <img id="dragon3_image" class="img-responsive itemhover" src="/static/img/dragon3.png" alt="Dragon Hard">
+    {% else %}
+        {% if session['infinity_stone'] %}
+            <a
+            class="btn btn-lg itemhover"
+            id="save-family"
+            href="{{ url_for('endscreen') }}"
+            role="button">Save Family</a>
+        {% endif %}
+    {% endif %}
+    <img id="familyclosed_image" src="/static/img/familyclosed.png" alt="Family" />
 </div>
 
 {% endblock %}
 
 {% block codingchallenge %}
+<div class="container" id="codingchallenge">
+    {% if not session['family_guard'] %}
 
-    {% if not session['infinity_stone'] %}
-        <h1>Answer question</h1>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 1</button>
-        <button class="btn" type="button" onclick="wrong_answer()">Answer 2</button>
-
-        <a
-            class="btn btn-lg"
-            
-            href="#"
-            role="button">Answer 3</a>
-
-        <p id="comment"></p>
+        <h6 class="question">You found your family! However, the cruel dragon is holding them captive and it seems like they're under a spell. Save your family by answering this question: Which method finds the longest common prefix string amongst an array of strings?
+            If there is no common prefix, return an empty string "".</h6> 
+        <p id="comment-wrong"> </p>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    def longestCommonPrefix(strs):
+                        if not S: return ''
+                        m, M, i = min(S), max(S), 0
+                        for i in range(min(len(m),len(M))):
+                            if m[i] != M[i]: 
+                        return m[:i]
+                </code></pre>
+                <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    def longestCommonPrefix(strs):
+                        if not strs: return ''
+                        s1 = min(strs)
+                        s2 = max(strs)
+                        for i, letters in enumerate(s1):
+                            if letters != s1[i]:
+                                return s2[i] 
+                        return s1
+                </code></pre>
+                <a onclick="wrong_answer()" class="card-link stretched-link"></a>
+            </div>
+        </div>    
+        <div class="card card-style align-top">
+            <div class="card-body">
+                <pre class="card-text"><code>
+                    def longestCommonPrefix(strs):
+                        if not strs:
+                            return "" 
+                        for i, letters in enumerate(zip(*strs)):
+                            if len(set(letters)) > 1:
+                                return strs[0][:i]
+                        else:
+                            return min(strs)
+                </code></pre>
+                <a href="{{ url_for('update', item='family_guard') }}" class="card-link stretched-link"></a>
+            </div>
+        </div>
     {% else %}
-        {% if feedback != 'None' %}
-            <p id="comment">The purple key has been retrieved</p>
-        {% else %}
-            <p>Challenge Passed: item already retreived</p>
+        {% if not session['infinity_stone'] %}
+            <p id="comment-neutral">You must possess the infinity stone in order to undo the spell.</p>
         {% endif %}
     {% endif %}
 
-    
+</div>
 {% endblock %}
 
 {% block body2 %}
