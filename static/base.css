@@ -548,10 +548,10 @@ pre code {
     text-align: center;
     padding-top: 25%;
 }
-.about {
+#about {
     color: bisque;
     text-align: center;
-    padding-top: 25%;
+    padding-top: 10%;
 }
 .overlay{
     position:fixed;
@@ -567,12 +567,4 @@ pre code {
     outline: 3px solid;
     color: whitesmoke;
     font-weight: bold;
-}
-#avatar {
-    position: absolute;
-    top: 2%;
-    left: 67%;
-    width: 60px;
-    height: auto;
-    z-index: 5;
 }
