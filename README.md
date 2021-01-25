@@ -1,6 +1,8 @@
 # CodeVenture: Dungeon Edition
 [Game Link](http://code-venture.azurewebsites.net/)
+
 [Demo Video](https://youtu.be/5VyK9u5-IMw)
+
 [Devpost](https://devpost.com/software/codeventure-dungeon-edition)
 
 ## Learn to code through playing a strategic, dungeon-themed adventure game created to challenge your knowledge of computer science!
